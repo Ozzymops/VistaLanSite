@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "VistaLAN - registreren";
+}
+
+@model Participant
+
+@* Header *@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <p class="navbar-brand">Inschrijven</p>
+            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Index">Terug</a>
+        </div>
+    </nav>
+</header>
+
+@* Content *@
+<div class="text-center">
+    <div class="flex-form">
+        <form asp-controller="Home" asp-action="SubmitRegistration">
+            <h2>Persoonlijke informatie:</h2>
+            <div class="flex-container">
+                <p>Voornaam:</p>
+                <input type="text" name="FirstName" value="" placeholder="Voornaam" />
+            </div>
+            <div class="flex-container">
+                <p>Achternaam:</p>
+                <input type="text" name="LastName" value="" placeholder="Achternaam" />
+            </div>
+            <div class="flex-container">
+                <p>Leerlingnummer:</p>
+                <input type="text" name="StudentNumber" value="" placeholder="Leerlingnummer" />
+            </div>
+            <div class="flex-container">
+                <p>Klas:</p>
+                <input type="text" name="StudentClass" value="" placeholder="Klas" />
+            </div>
+            <div class="flex-container">
+                <p>Telefoonnummer:</p>
+                <input type="text" name="PhoneNumber" value="" placeholder="Telefoonnummer" />
+            </div>
+            <h2>Wat neem je mee?</h2>
+            <div class="flex-container" style="align-items: flex-start;">
+                <div class="flex-container-column">
+                    <p>Console?</p><br />
+                    <input type="checkbox" name="BringsConsole" value="true" />
+                </div>
+                <textarea name="ConsoleDetails" rows="10" cols="80" placeholder="Welke console? Neem je randapparatuur mee?"></textarea>
+            </div>
+            <div class="flex-container" style="align-items: flex-start;">
+                <div class="flex-container-column">
+                    <p>Computer?</p><br />
+                    <input type="checkbox" name="BringsComputer" value="true" />
+                </div>
+                <textarea name="ComputerDetails" rows="10" cols="80" placeholder="Desktop of laptop? Neem je randapparatuur mee?"></textarea>
+            </div>
+            <input type="hidden" name="HasPaid" value="0" />
+            <input type="hidden" name="AcquiredBadge" value="0" />
+            <input type="submit" value="Inschrijven" />
+        </form>
+    </div>
+</div>

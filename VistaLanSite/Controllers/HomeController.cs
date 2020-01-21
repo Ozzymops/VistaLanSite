@@ -20,6 +20,31 @@ namespace VistaLanSite.Controllers
             return View();
         }
 
+        public IActionResult Registration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitRegistration(Participant NewParticipant)
+        {
+            Queries Database = new Queries();
+            Database.RegisterParticipant(NewParticipant);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Overview()
+        {
+            // check temp. login
+
+            Queries Database = new Queries();
+            OverviewModel Model = new OverviewModel();
+            Model.ParticipantList = Database.RetrieveParticipants();
+
+            return View(Model);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

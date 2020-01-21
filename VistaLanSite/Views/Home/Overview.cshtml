@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "VistaLAN - overzicht";
+}
+
+@model  OverviewModel
+
+@* Header *@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <p class="navbar-brand">Overzicht</p>
+            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Index">Terug</a>
+        </div>
+    </nav>
+</header>
+
+@* Content *@
+<div class="text-center">
+    <div class="flex-form">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Leerlingnummer</th>
+                <th>Klas</th>
+                <th>Telefoonnummer</th>
+                <th>Console?</th>
+                <th>Console details</th>
+                <th>Computer?</th>
+                <th>Computer details</th>
+                <th>Heeft betaald?</th>
+                <th>Heeft badge gekregen?</th>
+            </tr>
+            @if (Model.ParticipantList != null && Model.ParticipantList.Count != 0)
+            {
+                foreach(Participant participant in Model.ParticipantList)
+                {
+                <tr>
+                    <td>@participant.Id</td>
+                    <td>@participant.FirstName</td>
+                    <td>@participant.LastName</td>
+                    <td>@participant.StudentNumber</td>
+                    <td>@participant.StudentClass</td>
+                    <td>@participant.PhoneNumber</td>
+                    <td>@participant.BringsConsole</td>
+                    <td>@participant.ConsoleDetails</td>
+                    <td>@participant.BringsComputer</td>
+                    <td>@participant.ComputerDetails</td>
+                    <td>@participant.HasPaid</td>
+                    <td>@participant.AcquiredBadge</td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

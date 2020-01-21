@@ -1,0 +1,76 @@
+﻿/*
+    CSS style sheet 
+
+    Kleurtjes:
+        Rood:   #e56a54
+        Blauw:  #00555c
+        Wit:    #fff
+
+*/
+
+/* Shared */
+div.test {
+    background-color: #e56a54;
+}
+
+/* Index.cshtml */
+
+/* Registration.cshtml */
+div.flex-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.flex-form input[type=submit] {
+
+}
+
+div.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+div.flex-container-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+div.flex-container p {
+    display: inline-block;
+    text-align: right;
+    float: left;
+    margin: 0px 5px 0px 0px;
+}
+
+div.flex-container input[type=text] {
+    display: inline-block;
+    width: 300px;
+    text-align: left;
+    float: right;
+}
+
+div.flex-container input[type=checkbox] {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+    float: right;
+}
+
+div.flex-container textarea {
+    height: 100px;
+    width: 500px;
+}
+
+p.registration.form {
+    
+}
+
+/* Overview.cshtml */
