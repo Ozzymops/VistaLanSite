@@ -32,7 +32,12 @@ namespace VistaLanSite.Controllers
             Queries Database = new Queries();
             Database.RegisterParticipant(NewParticipant);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("RegistrationComplete", "Home");
+        }
+
+        public IActionResult RegistrationComplete()
+        {
+            return View();
         }
 
         public IActionResult Overview(OverviewModel Model, int ModelExists, bool OnlyUnpaidParticipants)
