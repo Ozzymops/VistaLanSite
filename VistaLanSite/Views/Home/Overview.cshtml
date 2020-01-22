@@ -17,7 +17,15 @@
 @* Content *@
 <div class="text-center">
     <div class="flex-form">
-        <table>
+        <form>
+            <div class="flex-container" style="margin-bottom: 10px;">
+                <p>Alleen onbetaalde deelnemers tonen?</p>
+                <input type="checkbox" name="OnlyUnpaidParticipants" value="true" checked="@Model.OnlyUnpaidParticipants" style="margin: 4px 0px 0px 0px" />
+            </div>
+            <input type="hidden" name="ModelExists" value="1" />
+            <input type="submit" value="Pagina opnieuw laden" style="margin-bottom: 15px;" />
+        </form>
+        <table class="flex-table">
             <tr>
                 <th>Id</th>
                 <th>Voornaam</th>
@@ -29,27 +37,27 @@
                 <th>Console details</th>
                 <th>Computer?</th>
                 <th>Computer details</th>
-                <th>Heeft betaald?</th>
-                <th>Heeft badge gekregen?</th>
+                <th>Al betaald?</th>
+                <th>Betaal</th>
             </tr>
             @if (Model.ParticipantList != null && Model.ParticipantList.Count != 0)
             {
-                foreach(Participant participant in Model.ParticipantList)
+                foreach (Participant participant in Model.ParticipantList)
                 {
-                <tr>
-                    <td>@participant.Id</td>
-                    <td>@participant.FirstName</td>
-                    <td>@participant.LastName</td>
-                    <td>@participant.StudentNumber</td>
-                    <td>@participant.StudentClass</td>
-                    <td>@participant.PhoneNumber</td>
-                    <td>@participant.BringsConsole</td>
-                    <td>@participant.ConsoleDetails</td>
-                    <td>@participant.BringsComputer</td>
-                    <td>@participant.ComputerDetails</td>
-                    <td>@participant.HasPaid</td>
-                    <td>@participant.AcquiredBadge</td>
-                </tr>
+                    <tr>
+                        <td style="width: 20px;">@participant.Id</td>
+                        <td>@participant.FirstName</td>
+                        <td>@participant.LastName</td>
+                        <td>@participant.StudentNumber</td>
+                        <td>@participant.StudentClass</td>
+                        <td>@participant.PhoneNumber</td>
+                        <td><input type="checkbox" checked="@participant.BringsConsole" disabled="disabled" /></td>
+                        <td>@participant.ConsoleDetails</td>
+                        <td><input type="checkbox" checked="@participant.BringsComputer" disabled="disabled" /></td>
+                        <td>@participant.ComputerDetails</td>
+                        <td><input type="checkbox" checked="@participant.HasPaid" disabled="disabled" /></td>
+                        <td><input type="button" onclick="location.href='@Url.Action("UpdateParticipantStatus", "Home")?UpdatedParticipantId=@participant.Id&OnlyUnpaidParticipants=@Model.OnlyUnpaidParticipants'" value="Betaal" /></td>
+                    </tr>
                 }
             }
         </table>

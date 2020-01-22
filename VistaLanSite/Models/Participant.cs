@@ -61,10 +61,5 @@ namespace VistaLanSite.Models
         /// Has the participant paid yet?
         /// </summary>
         public bool HasPaid { get; set; }
-
-        /// <summary>
-        /// Has the participant acquired a badge yet?
-        /// </summary>
-        public bool AcquiredBadge { get; set; }
     }
 }

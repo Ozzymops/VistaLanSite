@@ -69,8 +69,16 @@ div.flex-container textarea {
     width: 500px;
 }
 
-p.registration.form {
-    
+/* Overview.cshtml */
+table.flex-table th, td {
+    border: 1px solid black;
 }
 
-/* Overview.cshtml */
+table.flex-table th {
+    height: 25px;
+}
+
+input[type=submit].submit-overview {
+    float: right;
+    margin: 5px 0px 0px 0px;
+}

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using VistaLanSite.Models;
 
 namespace VistaLanSite.Controllers
@@ -34,15 +35,32 @@ namespace VistaLanSite.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Overview()
+        public IActionResult Overview(OverviewModel Model, int ModelExists, bool OnlyUnpaidParticipants)
         {
             // check temp. login
 
             Queries Database = new Queries();
-            OverviewModel Model = new OverviewModel();
-            Model.ParticipantList = Database.RetrieveParticipants();
+
+            if (ModelExists == 0)
+            {
+                Model = new OverviewModel();
+                Model.OnlyUnpaidParticipants = OnlyUnpaidParticipants;
+            }
+
+            Model.ParticipantList = Database.RetrieveParticipants(Model.OnlyUnpaidParticipants);
 
             return View(Model);
+        }
+
+        public IActionResult UpdateParticipantStatus(int UpdatedParticipantId, bool OnlyUnpaidParticipants)
+        {
+            // check temp. login
+
+            Queries Database = new Queries();
+
+            Database.UpdateParticipantStatus(UpdatedParticipantId);
+
+            return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null },  { "ModelExists", 0 }, { "OnlyUnpaidParticipants", OnlyUnpaidParticipants } });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
