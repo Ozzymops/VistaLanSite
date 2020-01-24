@@ -10,6 +10,6 @@ namespace VistaLanSite.Models
         public int ModelExists { get; set; }
         public int UpdatedParticipantId { get; set; }
         public bool OnlyUnpaidParticipants { get; set; }
-        public List<Participant> ParticipantList = new List<Participant>();
+        public List<Classes.Participant> ParticipantList = new List<Classes.Participant>();
     }
 }

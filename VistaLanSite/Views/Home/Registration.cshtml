@@ -2,7 +2,7 @@
     ViewData["Title"] = "VistaLAN - registreren";
 }
 
-@model Participant
+@model RegistrationModel
 
 @* Header *@
 <header>
@@ -21,41 +21,40 @@
             <h2>Persoonlijke informatie:</h2>
             <div class="flex-container">
                 <p>Voornaam:</p>
-                <input type="text" name="FirstName" value="" placeholder="Voornaam" />
+                <input type="text" asp-for="Participant.FirstName" placeholder="Voornaam" />
             </div>
             <div class="flex-container">
                 <p>Achternaam:</p>
-                <input type="text" name="LastName" value="" placeholder="Achternaam" />
+                <input type="text" asp-for="Participant.LastName" placeholder="Achternaam" />
             </div>
             <div class="flex-container">
                 <p>Leerlingnummer:</p>
-                <input type="text" name="StudentNumber" value="" maxlength="5" placeholder="Leerlingnummer" />
+                <input type="text" asp-for="Participant.StudentNumber" maxlength="5" placeholder="Leerlingnummer" />
             </div>
             <div class="flex-container">
                 <p>Klas:</p>
-                <input type="text" name="StudentClass" value="" placeholder="Klas" />
+                <input type="text" asp-for="Participant.StudentClass" placeholder="Klas" />
             </div>
             <div class="flex-container">
                 <p>Telefoonnummer:</p>
-                <input type="text" name="PhoneNumber" value="" placeholder="Telefoonnummer" />
+                <input type="text" asp-for="Participant.PhoneNumber" placeholder="Telefoonnummer" />
             </div>
             <h2>Wat neem je mee?</h2>
             <div class="flex-container" style="align-items: flex-start;">
                 <div class="flex-container-column">
                     <p>Console?</p><br />
-                    <input type="checkbox" name="BringsConsole" value="true" />
+                    <input type="checkbox" asp-for="Participant.BringsConsole" value="true" />
                 </div>
-                <textarea name="ConsoleDetails" rows="10" cols="80" placeholder="Welke console? Neem je randapparatuur mee?"></textarea>
+                <textarea asp-for="Participant.ConsoleDetails" rows="10" cols="80" placeholder="Welke console? Neem je randapparatuur mee?"></textarea>
             </div>
             <div class="flex-container" style="align-items: flex-start;">
                 <div class="flex-container-column">
                     <p>Computer?</p><br />
-                    <input type="checkbox" name="BringsComputer" value="true" />
+                    <input type="checkbox" asp-for="Participant.BringsComputer" value="true" />
                 </div>
-                <textarea name="ComputerDetails" rows="10" cols="80" placeholder="Desktop of laptop? Neem je randapparatuur mee?"></textarea>
+                <textarea asp-for="Participant.ComputerDetails" rows="10" cols="80" placeholder="Desktop of laptop? Neem je randapparatuur mee?"></textarea>
             </div>
-            <input type="hidden" name="HasPaid" value="0" />
-            <input type="hidden" name="AcquiredBadge" value="0" />
+            <input type="hidden" asp-for="Participant.HasPaid" value="0" />
             <input class="submit-registration" type="submit" value="Inschrijven" />
         </form>
     </div>

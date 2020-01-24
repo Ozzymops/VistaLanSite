@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace VistaLanSite.Models
+namespace VistaLanSite.Classes
 {
     public class Queries
     {
@@ -134,6 +134,30 @@ namespace VistaLanSite.Models
                 {
                     Debug.WriteLine("!ERROR! " + DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + " - " + _exception.ToString());
                     return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Retrieve the amount of participants already registered.
+        /// </summary>
+        /// <returns>Amount of registered participants</returns>
+        public int RetrieveParticipantCount()
+        {
+            using (SqlConnection _connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand _command = new SqlCommand("SELECT COUNT([Id]) FROM [Participants]", _connection);
+
+                try
+                {
+                    _connection.Open();
+                    int _count = (int)_command.ExecuteScalar();
+                    return _count;
+                }
+                catch (Exception _exception)
+                {
+                    Debug.WriteLine("!ERROR! " + DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + " - " + _exception.ToString());
+                    return -1;
                 }
             }
         }
