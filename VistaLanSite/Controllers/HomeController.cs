@@ -67,7 +67,6 @@ namespace VistaLanSite.Controllers
 
         public IActionResult Login(string ViewMessage)
         {
-            // check temp. login
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
             {
                 if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
@@ -97,7 +96,6 @@ namespace VistaLanSite.Controllers
 
         public IActionResult Overview(OverviewModel Model, int ModelExists, bool OnlyUnpaidParticipants)
         {
-            // check temp. login
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
             {
                 if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
@@ -123,13 +121,40 @@ namespace VistaLanSite.Controllers
 
         public IActionResult UpdateParticipantStatus(int UpdatedParticipantId, bool OnlyUnpaidParticipants)
         {
-            // check temp. login
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
+            {
+                if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
+                {
+                    ViewData["Message"] = null;
 
-            Queries Database = new Queries();
+                    Queries Database = new Queries();
 
-            Database.UpdateParticipantStatus(UpdatedParticipantId);
+                    Database.UpdateParticipantStatus(UpdatedParticipantId);
 
-            return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null },  { "ModelExists", 0 }, { "OnlyUnpaidParticipants", OnlyUnpaidParticipants } });
+                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", OnlyUnpaidParticipants } });
+                }
+            }
+
+            return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Je bent niet gemachtigd om deze actie uit te voeren." } });
+        }
+
+        public IActionResult DeleteParticipant(int DeletedParticipantId, bool OnlyUnpaidParticipants)
+        {
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
+            {
+                if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
+                {
+                    ViewData["Message"] = null;
+
+                    Queries Database = new Queries();
+
+                    Database.DeleteParticipant(DeletedParticipantId);
+
+                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", OnlyUnpaidParticipants } });
+                }
+            }
+
+            return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Je bent niet gemachtigd om deze actie uit te voeren." } });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -199,5 +199,39 @@ namespace VistaLanSite.Classes
                 }
             }
         }
+
+        /// <summary>
+        /// Delete a participant from the list.
+        /// </summary>
+        /// <param name="DeletedParticipantId">ID of to be deleted participant</param>
+        /// <returns>Has the procedure succeeded or not?</returns>
+        public bool DeleteParticipant(int DeletedParticipantId)
+        {
+            using (SqlConnection _connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand _command = new SqlCommand("DELETE FROM [dbo].[Participants] WHERE [Id] = @Id", _connection);
+
+                _command.Parameters.Add(new SqlParameter("@Id", DeletedParticipantId));
+
+                try
+                {
+                    _connection.Open();
+
+                    int _rows = _command.ExecuteNonQuery();
+
+                    if (_rows > 0)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+                catch (Exception _exception)
+                {
+                    Debug.WriteLine("!ERROR! " + DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + " - " + _exception.ToString());
+                    return false;
+                }
+            }
+        }
     }
 }
