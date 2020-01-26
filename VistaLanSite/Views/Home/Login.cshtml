@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "VistaLAN - login";
+}
+
+@model LoginModel
+
+@* Header *@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <p class="navbar-brand">Login</p>
+            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Index">Terug</a>
+        </div>
+    </nav>
+</header>
+
+@* Content *@
+<div class="text-center">
+    <div class="flex-form">
+        <p>@ViewData["Message"]</p>
+        <form asp-controller="Home" asp-action="CheckLogin">
+            <h2>Administratie login</h2>
+            <div class="flex-container">
+                <p>Gebruikersnaam:</p>
+                <input type="text" asp-for="Username" style="width: 150px;" />
+            </div>
+            <div class="flex-container">
+                <p>Wachtwoord:</p>
+                <input type="text" asp-for="Password" style="width: 150px;" />
+            </div>
+            <input type="submit" value="Inloggen" />
+        </form>
+    </div>
+</div>

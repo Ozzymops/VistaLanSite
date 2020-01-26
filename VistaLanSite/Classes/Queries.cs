@@ -11,7 +11,6 @@ namespace VistaLanSite.Classes
     public class Queries
     {
         // Construct connection string
-        //private string ConnectionString = "Server=localhost\\SQLEXPRESS;Database=VistaLAN;Integrated Security=False;User Id='DBMASTER'; Password='M07cwK%4'";
         private string ConnectionString = (ConfigurationManager.AppSettings["ConnectionString"]
                        + "User Id='" + ConfigurationManager.AppSettings["DbUsername"] + "'; "
                        + "Password='" + ConfigurationManager.AppSettings["DbPassword"] + "';").ToString();

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using VistaLanSite.Models;
 using VistaLanSite.Classes;
+using Microsoft.AspNetCore.Http;
 
 namespace VistaLanSite.Controllers
 {
@@ -64,21 +65,60 @@ namespace VistaLanSite.Controllers
             return View();
         }
 
+        public IActionResult Login(string ViewMessage)
+        {
+            // check temp. login
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
+            {
+                if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
+                {
+                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", false } });
+                }
+            }
+
+            if (!String.IsNullOrEmpty(ViewMessage))
+            {
+                ViewData["Message"] = ViewMessage;
+            }
+
+            return View();
+        }
+
+        public IActionResult CheckLogin(LoginModel Model)
+        {
+            if (Model.Username == "Administratie" && Model.Password == "8MmNS") // remember this!
+            {
+                HttpContext.Session.SetString("User", Model.Username + ":" + Model.Password);
+                return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", false } });
+            }
+
+            return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Fout gebruikersnaam/wachtwoord. Probeer opnieuw." } });
+        }
+
         public IActionResult Overview(OverviewModel Model, int ModelExists, bool OnlyUnpaidParticipants)
         {
             // check temp. login
-
-            Queries Database = new Queries();
-
-            if (ModelExists == 0)
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
             {
-                Model = new OverviewModel();
-                Model.OnlyUnpaidParticipants = OnlyUnpaidParticipants;
+                if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
+                {
+                    ViewData["Message"] = null;
+
+                    Queries Database = new Queries();
+
+                    if (ModelExists == 0)
+                    {
+                        Model = new OverviewModel();
+                        Model.OnlyUnpaidParticipants = OnlyUnpaidParticipants;
+                    }
+
+                    Model.ParticipantList = Database.RetrieveParticipants(Model.OnlyUnpaidParticipants);
+
+                    return View(Model);
+                }
             }
 
-            Model.ParticipantList = Database.RetrieveParticipants(Model.OnlyUnpaidParticipants);
-
-            return View(Model);
+            return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Je bent niet gemachtigd om deze pagina te bezoeken." } });
         }
 
         public IActionResult UpdateParticipantStatus(int UpdatedParticipantId, bool OnlyUnpaidParticipants)

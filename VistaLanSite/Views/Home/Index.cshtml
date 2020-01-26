@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "VistaLAN";
+    ViewData["Title"] = "Vista LAN";
 }
 
 @model  IndexModel
@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
             <p class="navbar-brand">Voorpagina</p>
-            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Overview">Overzicht</a>
+            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Login">Overzicht</a>
         </div>
     </nav>
 </header>
@@ -26,5 +26,6 @@
             <p>Registreer je nu voor de LAN party! Nog @Model.AvailableSpots plekken vrij!</p>
             <a asp-controller="Home" asp-action="Registration">Registreren voor evenement</a>
         }
+        <p>@ViewData["Message"]</p>
     </div>
 </div>
