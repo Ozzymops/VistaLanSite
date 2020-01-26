@@ -34,6 +34,11 @@ namespace VistaLanSite.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SubmitRegistration(RegistrationModel Model)
         {

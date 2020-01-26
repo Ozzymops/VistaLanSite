@@ -2,30 +2,22 @@
     ViewData["Title"] = "Vista LAN";
 }
 
-@model  IndexModel
-
-@* Header *@
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <p class="navbar-brand">Voorpagina</p>
-            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Login">Overzicht</a>
-        </div>
-    </nav>
-</header>
-
+@model IndexModel
 @* Content *@
-<div class="text-center">
-    <div class="test">
-        @if (Model.AvailableSpots <= 0)
-        {
-            <p>Sorry! Er zijn geen plekken meer vrij.</p>
-        }
-        else
-        {
-            <p>Registreer je nu voor de LAN party! Nog @Model.AvailableSpots plekken vrij!</p>
-            <a asp-controller="Home" asp-action="Registration">Registreren voor evenement</a>
-        }
-        <p>@ViewData["Message"]</p>
+<div class="jumbotron-fluid" style="height: 800px; max-height: 800px; background-size: cover; background-image:url('img/back-1.png');">
+    <div class="container">
+        <div style="position: absolute; top: 62vh; left: 1vw; width: 33vw; padding-bottom: 0px; background-color: none;">
+            <h1 class="title">VISTA LAN</h1>
+            <h2 class="subtitle">LAN-party voor iedereen van VISTA college</h2>
+            @if (Model.AvailableSpots <= 0)
+            {
+                <h3 class="text">Sorry, er zijn geen plaatsen meer vrij.</h3>
+            }
+            else
+            {
+                <h3 class="subtitle" style="color: yellow;">Schrijf je snel in, nog @Model.AvailableSpots plaatsen over!</h3>
+                <a asp-action="Registration" asp-controller="Home"><input type="button" value="> Meld je aan" style="color: white; font-size: 24px; margin-left: 11%; background-color: #e56a54; width: 200px; height: 60px; border-radius: 15px;"/></a>
+            }
+        </div>
     </div>
 </div>

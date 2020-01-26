@@ -45,23 +45,23 @@
             {
                 foreach (Participant participant in Model.ParticipantList)
                 {
-        <tr>
-            <td style="width: 20px;">@participant.Id</td>
-            <td>@participant.FirstName</td>
-            <td>@participant.LastName</td>
-            <td>@participant.StudentNumber</td>
-            <td>@participant.StudentClass</td>
-            <td>@participant.PhoneNumber</td>
-            <td><input type="checkbox" checked="@participant.BringsConsole" disabled="disabled" /></td>
-            <td>@participant.ConsoleDetails</td>
-            <td><input type="checkbox" checked="@participant.BringsComputer" disabled="disabled" /></td>
-            <td>@participant.ComputerDetails</td>
-            <td><input type="checkbox" checked="@participant.HasPaid" disabled="disabled" /></td>
-            <td>@Html.ActionLink("Betaal", "UpdateParticipantStatus", "Home", new { UpdatedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat " + participant.FirstName + " " + participant.LastName + " betaald heeft?')" })</td>
-            <td>@Html.ActionLink("Verwijder", "DeleteParticipant", "Home", new { DeletedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat je " + participant.FirstName + " " + participant.LastName + " wil verwijderen?')" })</td>
-            @* <td><input type="button" onclick="location.href='@Url.Action("UpdateParticipantStatus", "Home")?UpdatedParticipantId=@participant.Id&OnlyUnpaidParticipants=@Model.OnlyUnpaidParticipants'" value="Betaal" /></td> *@
-            @* <td><input type="button" asp-action="DeleteParticipant" asp-controller="Home" onclick="return confirm('Weet je zeker dat je @participant.Id wil verwijderen?')" value="Verwijder" /></td> *@
-        </tr>
+                <tr>
+                    <td style="width: 20px;">@participant.Id</td>
+                    <td>@participant.FirstName</td>
+                    <td>@participant.LastName</td>
+                    <td>@participant.StudentNumber</td>
+                    <td>@participant.StudentClass</td>
+                    <td>@participant.PhoneNumber</td>
+                    <td><input type="checkbox" checked="@participant.BringsConsole" disabled="disabled" /></td>
+                    <td>@participant.ConsoleDetails</td>
+                    <td><input type="checkbox" checked="@participant.BringsComputer" disabled="disabled" /></td>
+                    <td>@participant.ComputerDetails</td>
+                    <td><input type="checkbox" checked="@participant.HasPaid" disabled="disabled" /></td>
+                    <td>@Html.ActionLink("Betaal", "UpdateParticipantStatus", "Home", new { UpdatedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat " + participant.FirstName + " " + participant.LastName + " betaald heeft?')" })</td>
+                    <td>@Html.ActionLink("Verwijder", "DeleteParticipant", "Home", new { DeletedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat je " + participant.FirstName + " " + participant.LastName + " wil verwijderen?')" })</td>
+                    @* <td><input type="button" onclick="location.href='@Url.Action("UpdateParticipantStatus", "Home")?UpdatedParticipantId=@participant.Id&OnlyUnpaidParticipants=@Model.OnlyUnpaidParticipants'" value="Betaal" /></td> *@
+                    @* <td><input type="button" asp-action="DeleteParticipant" asp-controller="Home" onclick="return confirm('Weet je zeker dat je @participant.Id wil verwijderen?')" value="Verwijder" /></td> *@
+                </tr>
                 }
             }
         </table>
