@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Vista LAN info";
+}
+
+@model IndexModel
+
+@* Content *@
+<div class="jumbotron-fluid" style="height: 800px; max-height: 800px; background-size: cover; background-image:url('img/back-1.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="title">WAT IS DIT?</h1>
+                <hr />
+                <h2 class="subtitle">Een LAN-party is een evenement waar mensen met en tegen elkaar kunnen gamen op een locatie met hun eigen apparatuur.</h2>
+                <h2 class="subtitle">Dit is de eerste LAN-party georganiseerd door en voor studenten van het Vista-college van de Valkenburgerweg.</h2>
+                <h2 class="subtitle">Heb je altijd al willen weten wie de beste Super Smash Bros speler is van de school, of wie de meest doeltreffende scorer is in Rocket League, of welke klas het meest tactische team in Rainbow Six: Siege spelers kan opzetten?</h2>
+                <h2 class="subtitle">Of wil je gewoon gamen met je klas en schoolgenoten in een casual setting in het schoolgebouw?<br />Dan is deze LAN-party voor jou.</h2>
+                <h2 class="subtitle">Neem je eigen computer en/of gaming laptop mee en<br />neem plaats in de B-toren binnenin het Vista-college aan de Valkenburgerweg.</h2>
+                <h2 class="subtitle">Een aantal toernooien zullen tijdens de LAN-party worden opgezet,<br />maar als je gewoon wil gamen met je vrienden en klasgenoten, dan kan dat ook gewoon.</h2>
+                <h2 class="subtitle">Het is ook geen probleem als je bordspellen en consoles wil meenemen.</h2>
+                <h2 class="subtitle">Kortom: kom met ons gamen!</h2>
+            </div>
+            <div class="col-sm-6">
+                <h1 class="title">WAAR EN WANNEER?</h1>
+                <hr />
+                <h2 class="subtitle">De LAN-party vindt zich plaats op 21 februari in het Vista-college: Heerlen, Valkenburgerweg 148, B-toren.</h2>
+                <h2 class="subtitle">We beginnen vanaf 19:00, maar kom wat eerder om je spullen op te zetten!</h2>
+                <h2 class="subtitle" style="font-weight: bold;">Een toegangskaartje kost €10,-. Dit is inclusief eten en drinken.</h2>
+                <h2 class="subtitle">De parkeergarage zal dicht zijn, maar je kunt je laten afzetten bij de hoofdingang en vanaf daar kun je naar de B-toren gaan.</h2>
+                <h2 class="subtitle">De LAN-party zal voortduren tot de dag daarna tot 08:00.</h2>
+            </div>
+        </div>
+        @if (Model.AvailableSpots <= 0)
+        {
+            <h3 class="text">Sorry, er zijn geen plaatsen meer vrij.</h3>
+        }
+        else
+        {
+            <h3 class="text" style="text-align: center; font-size: 28px;">Geïnteresseerd? Schrijf je snel in, nog @Model.AvailableSpots plaatsen over!</h3>
+            <a asp-action="Registration" asp-controller="Home"><input class="orange-button" type="button" value="> Meld je aan" /></a>
+        }
+        <a asp-action="Sponsors" asp-controller="Home"><input class="orange-button" style="margin-top: 10px;" type="button" value="> Onze sponsors" /></a>
+    </div>
+</div>

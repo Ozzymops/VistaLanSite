@@ -3,6 +3,7 @@
 }
 
 @model IndexModel
+
 @* Content *@
 <div class="jumbotron-fluid" style="height: 800px; max-height: 800px; background-size: cover; background-image:url('img/back-1.png');">
     <div class="container">
@@ -16,8 +17,9 @@
             else
             {
                 <h3 class="subtitle" style="color: yellow;">Schrijf je snel in, nog @Model.AvailableSpots plaatsen over!</h3>
-                <a asp-action="Registration" asp-controller="Home"><input type="button" value="> Meld je aan" style="color: white; font-size: 24px; margin-left: 11%; background-color: #e56a54; width: 200px; height: 60px; border-radius: 15px;"/></a>
+                <a asp-action="Registration" asp-controller="Home"><input type="button" value="> Meld je aan" style="color: white; font-size: 24px; margin-left: 5%; background-color: #e56a54; width: 200px; height: 60px; border-radius: 15px;" /></a>
             }
+            <a asp-action="Info" asp-controller="Home"><input type="button" value="> Wat is dit?" style="color: white; font-size: 24px; margin-left: 0; background-color: #e56a54; width: 200px; height: 60px; border-radius: 15px;" /></a>
         </div>
     </div>
 </div>

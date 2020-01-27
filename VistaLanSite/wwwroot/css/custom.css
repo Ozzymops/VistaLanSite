@@ -33,11 +33,22 @@ h3.text {
     display: block;
     padding: 4px;
     margin-top: 2px;
-    color: white;
+    color: yellow;
     text-align: left;
     font-family: Arial;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 16px;
+}
+
+input[type=button].orange-button {
+    display: block;
+    width: 200px;
+    height: 60px;
+    color: white;
+    font-size: 24px;
+    margin: 0 auto;
+    background-color: #e56a54;
+    border-radius: 15px;
 }
 
 .responsive-flex-column {

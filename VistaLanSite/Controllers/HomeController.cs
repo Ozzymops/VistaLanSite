@@ -39,6 +39,15 @@ namespace VistaLanSite.Controllers
             return View();
         }
 
+        public IActionResult Info()
+        {
+            Queries Database = new Queries();
+            IndexModel Model = new IndexModel();
+            Model.AvailableSpots = AvailableSpots - Database.RetrieveParticipantCount();
+
+            return View(Model);
+        }
+
         [HttpPost]
         public IActionResult SubmitRegistration(RegistrationModel Model)
         {
