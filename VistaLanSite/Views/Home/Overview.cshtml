@@ -4,66 +4,84 @@
 
 @model OverviewModel
 
-@* Header *@
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <p class="navbar-brand">Overzicht</p>
-            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Index">Terug</a>
-        </div>
-    </nav>
-</header>
-
 @* Content *@
-<div class="text-center">
-    <div class="flex-form">
-        <form>
-            <div class="flex-container" style="margin-bottom: 10px;">
-                <p>Alleen onbetaalde deelnemers tonen?</p>
-                <input type="checkbox" name="OnlyUnpaidParticipants" value="true" checked="@Model.OnlyUnpaidParticipants" style="margin: 4px 0px 0px 0px" />
-            </div>
-            <input type="hidden" name="ModelExists" value="1" />
-            <input type="submit" value="Pagina opnieuw laden" style="margin-bottom: 15px;" />
-        </form>
-        <table class="flex-table">
-            <tr>
-                <th>Id</th>
-                <th>Voornaam</th>
-                <th>Achternaam</th>
-                <th>Leerlingnummer</th>
-                <th>Klas</th>
-                <th>Telefoonnummer</th>
-                <th>Console?</th>
-                <th>Console details</th>
-                <th>Computer?</th>
-                <th>Computer details</th>
-                <th>Al betaald?</th>
-                <th>Betaal</th>
-                <th>Verwijder</th>
-            </tr>
-            @if (Model.ParticipantList != null && Model.ParticipantList.Count != 0)
-            {
-                foreach (Participant participant in Model.ParticipantList)
-                {
-                <tr>
-                    <td style="width: 20px;">@participant.Id</td>
-                    <td>@participant.FirstName</td>
-                    <td>@participant.LastName</td>
-                    <td>@participant.StudentNumber</td>
-                    <td>@participant.StudentClass</td>
-                    <td>@participant.PhoneNumber</td>
-                    <td><input type="checkbox" checked="@participant.BringsConsole" disabled="disabled" /></td>
-                    <td>@participant.ConsoleDetails</td>
-                    <td><input type="checkbox" checked="@participant.BringsComputer" disabled="disabled" /></td>
-                    <td>@participant.ComputerDetails</td>
-                    <td><input type="checkbox" checked="@participant.HasPaid" disabled="disabled" /></td>
-                    <td>@Html.ActionLink("Betaal", "UpdateParticipantStatus", "Home", new { UpdatedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat " + participant.FirstName + " " + participant.LastName + " betaald heeft?')" })</td>
-                    <td>@Html.ActionLink("Verwijder", "DeleteParticipant", "Home", new { DeletedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat je " + participant.FirstName + " " + participant.LastName + " wil verwijderen?')" })</td>
-                    @* <td><input type="button" onclick="location.href='@Url.Action("UpdateParticipantStatus", "Home")?UpdatedParticipantId=@participant.Id&OnlyUnpaidParticipants=@Model.OnlyUnpaidParticipants'" value="Betaal" /></td> *@
-                    @* <td><input type="button" asp-action="DeleteParticipant" asp-controller="Home" onclick="return confirm('Weet je zeker dat je @participant.Id wil verwijderen?')" value="Verwijder" /></td> *@
-                </tr>
-                }
-            }
-        </table>
+<div class="jumbotron-fluid">
+    <div class="container">
+        <h1 class="title">OVERZICHT</h1>
+        <div>
+            <form>
+                <input style="float: left; margin-top: 8px;" type="checkbox" name="OnlyUnpaidParticipants" value="true" checked="@Model.OnlyUnpaidParticipants" />
+                <input style="float: right; margin-right: 550px; width: 200px;" type="submit" value="Pagina opnieuw laden" />
+                <h3 class="text" style="margin-left: 25px;">Alleen onbetaalde deelnemers tonen?</h3>
+                <input type="hidden" name="ModelExists" value="1" />
+            </form>
+        </div>
+        @if (Model.ParticipantList != null && Model.ParticipantList.Count != 0)
+        {
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Voornaam</th>
+                        <th scope="col">Achternaam</th>
+                        <th scope="col">Leerlingnummer</th>
+                        <th scope="col">Klas</th>
+                        <th scope="col">Telefoonnummer</th>
+                        <th scope="col">Console?</th>
+                        <th scope="col">Info</th>
+                        <th scope="col">Computer?</th>
+                        <th scope="col">Info</th>
+                        <th scope="col">Betaald?</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Participant participant in Model.ParticipantList)
+                    {
+                        <tr>
+                            <th scope="row">@participant.Id</th>
+                            <td>@participant.FirstName</td>
+                            <td>@participant.LastName</td>
+                            <td>@participant.StudentNumber</td>
+                            <td>@participant.StudentClass</td>
+                            <td>@participant.PhoneNumber</td>
+                            @if (participant.BringsConsole)
+                            {
+                                <td class="table-success" style="color: black; text-align: center;">Ja</td>
+                            }
+                            else
+                            {
+                                <td class="table-warning" style="color: black; text-align: center;">Nee</td>
+                            }
+                            <td>@participant.ConsoleDetails</td>
+                            @if (participant.BringsComputer)
+                            {
+                                <td class="table-success" style="color: black; text-align: center;">Ja</td>
+                            }
+                            else
+                            {
+                                <td class="table-warning" style="color: black; text-align: center;">Nee</td>
+                            }
+                            <td>@participant.ComputerDetails</td>
+                            @if (participant.HasPaid)
+                            {
+                                <td class="table-success" style="color: black; text-align: center;">Ja</td>
+                            }
+                            else
+                            {
+                                <td class="table-danger" style="color: black; text-align: center;">Nee</td>
+                            }
+                            <td>@Html.ActionLink("Betaal", "UpdateParticipantStatus", "Home", new { UpdatedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat " + participant.FirstName + " " + participant.LastName + " betaald heeft?')" })</td>
+                            <td>@Html.ActionLink("Verwijder", "DeleteParticipant", "Home", new { DeletedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat je " + participant.FirstName + " " + participant.LastName + " wil verwijderen?')" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h3 class="text" style="margin-left: 25px;">Er zijn geen deelnemers gevonden.</h3>
+        }
     </div>
 </div>
