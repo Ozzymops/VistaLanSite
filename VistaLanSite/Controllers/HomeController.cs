@@ -48,6 +48,11 @@ namespace VistaLanSite.Controllers
         {
             return View();
         }
+
+        public IActionResult Rules()
+        {
+            return View();
+        }
         #endregion
 
         #region Registration actions
@@ -68,7 +73,7 @@ namespace VistaLanSite.Controllers
             }
             else
             {
-                ViewMessage = "Je bent succesvol geregistreerd voor de LAN party, vergeet niet te betalen nadat we contact met je opnemen. Veel plezier!";
+                ViewMessage = "Je bent succesvol geregistreerd voor de LAN-party, vergeet niet te betalen nadat we contact met je opnemen. Alvast veel plezier!";
                 Database.RegisterParticipant(Model.Participant);
             }
 

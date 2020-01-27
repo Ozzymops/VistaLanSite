@@ -1,22 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "VistaLAN - succes!";
+    ViewData["Title"] = "VISTA LAN - Registratie compleet!";
 }
 
-@model RegistrationModel
-
-@* Header *@
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <p class="navbar-brand">Klaar!</p>
-            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        </div>
-    </nav>
-</header>
-
 @* Content *@
-<div class="text-center">
-    <div class="flex-form">
-        <p>@ViewData["Message"]</p>
+<div class="jumbotron-fluid" style="height: 800px; max-height: 800px;">
+    <div class="container">
+        <h1 class="title">Klaar!</h1>
+        <h2 class="subtitle">@ViewData["Message"]</h2>
     </div>
 </div>

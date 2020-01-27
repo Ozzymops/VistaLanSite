@@ -40,6 +40,17 @@ h3.text {
     font-size: 16px;
 }
 
+label.label-text {
+    display: block;
+    padding: 4px;
+    margin-top: 2px;
+    color: white;
+    text-align: left;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 16px;
+}
+
 input[type=button].orange-button {
     display: block;
     width: 200px;

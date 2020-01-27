@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "VISTA LAN - Regels";
+}
+
+@* Content *@
+<div class="jumbotron-fluid" style="height: 800px; max-height: 800px;">
+    <div class="container">
+        <h1 class="title">REGELS</h1>
+        <hr />
+        <h2 class="subtitle">Als je mee doet met deze LAN-party geef je aan dat je akkoord gaat met de volgende regels.</h2>
+        <h2 class="subtitle">Bij overtreden van deze regels zullen we op zijn minst overgaan tot verwijdering van de LAN-party.</h2>
+        <h2 class="subtitle">Dit is een VISTA event waar alle gangbare regels in werking zijn. Denk hierbij aan:</h2>
+        <ul class="list-group">
+            <li class="list-group-item">1. Respecteer andermans spullen</li>
+            <li class="list-group-item">2. Gedraag je professioneel, zowel in-game alsook in real-life</li>
+            <li class="list-group-item">3. Laat geen troep en/of rotzooi achter</li>
+            <li class="list-group-item">4. Neem geen eigen eten en drinken mee, dat wordt door ons aangeboden</li>
+            <li class="list-group-item">5. Het gebruik van alcohol/drugs is niet toegestaan</li>
+            <li class="list-group-item">6. Roken kan alleen op de daarvoor aangewezen locatie</li>
+            <li class="list-group-item">7. Speel niet vals</li>
+            <li class="list-group-item">8. Zorg ervoor dat je altijd je badge bij je hebt zodat we je kunnen identificeren</li>
+            <li class="list-group-item">9. Volg de instructies op van bewakers/LAN-party medewerkers</li>
+            <li class="list-group-item">10. Bij overtreding van deze regels zul je verwijderd worden van het evenement</li>
+            <li class="list-group-item">11. Respecteer elkaar en maak er een veilige en gezellige avond van!</li>
+        </ul>
+        <h2 class="subtitle">We zullen met zijn allen goed op de regels moeten letten, dit is de eerste keer dat een VISTA LAN-party wordt georganiseerd.</h2>
+        <h2 class="subtitle" style="text-align: center;">Als we willen dat er een vervolg komt dan moeten we een goede eerste indruk maken!</h2>
+        <form asp-controller="Home" asp-action="Registration">
+            <div style="text-align: center; margin: 0 auto;">
+                <label class="label-text" style="text-align: center;" for="rules">Ik ga akkoord met de gestelde regels.</label>
+                <input id="rules" class="form-control" style="width: calc(1.5em + 2px + 0.75rem); margin: 0 auto; margin-top: -10px;" type="checkbox" required="required" />
+                <input class="orange-button" style="margin-top: 20px; width: 200px;" type="submit" value="Ik wil meedoen!" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,61 +1,61 @@
 ﻿@{
-    ViewData["Title"] = "VistaLAN - registreren";
+    ViewData["Title"] = "VISTA LAN - Registreren";
 }
 
 @model RegistrationModel
 
-@* Header *@
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <p class="navbar-brand">Inschrijven</p>
-            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Index">Terug</a>
-        </div>
-    </nav>
-</header>
-
 @* Content *@
-<div class="text-center">
-    <div class="flex-form">
-        <form asp-controller="Home" asp-action="SubmitRegistration">
-            <h2>Persoonlijke informatie:</h2>
-            <div class="flex-container">
-                <p>Voornaam:</p>
-                <input type="text" asp-for="Participant.FirstName" placeholder="Voornaam" />
-            </div>
-            <div class="flex-container">
-                <p>Achternaam:</p>
-                <input type="text" asp-for="Participant.LastName" placeholder="Achternaam" />
-            </div>
-            <div class="flex-container">
-                <p>Leerlingnummer:</p>
-                <input type="text" asp-for="Participant.StudentNumber" maxlength="5" placeholder="Leerlingnummer" />
-            </div>
-            <div class="flex-container">
-                <p>Klas:</p>
-                <input type="text" asp-for="Participant.StudentClass" placeholder="Klas" />
-            </div>
-            <div class="flex-container">
-                <p>Telefoonnummer:</p>
-                <input type="text" asp-for="Participant.PhoneNumber" placeholder="Telefoonnummer" />
-            </div>
-            <h2>Wat neem je mee?</h2>
-            <div class="flex-container" style="align-items: flex-start;">
-                <div class="flex-container-column">
-                    <p>Console?</p><br />
-                    <input type="checkbox" asp-for="Participant.BringsConsole" value="true" />
+<div class="jumbotron-fluid" style="height: 800px; max-height: 800px;">
+    <div class="container">
+        <h1 class="title">AANMELDEN</h1>
+        <hr />
+        <form asp-action="SubmitRegistration" asp-controller="Home">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="title">CONTACTINFORMATIE</h1>
+                    <hr />
+                    <div class="form-group">
+                        <label class="label-text" for="firstname">Voornaam:</label>
+                        <input id="firstname" class="form-control" type="text" asp-for="Participant.FirstName" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label-text" for="lastname">Achternaam:</label>
+                        <input id="lastname" class="form-control" type="text" asp-for="Participant.LastName" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label-text" for="studentnumber">Studentnummer:</label>
+                        <input id="studentnumber" class="form-control" type="number" asp-for="Participant.StudentNumber" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label-text" for="class">Klas:</label>
+                        <input id="class" class="form-control" type="text" asp-for="Participant.StudentClass" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label-text" for="phone">Telefoonnummer:</label>
+                        <input id="phone" class="form-control" type="tel" asp-for="Participant.PhoneNumber" required="required" />
+                    </div>
                 </div>
-                <textarea asp-for="Participant.ConsoleDetails" rows="10" cols="80" placeholder="Welke console? Neem je randapparatuur mee?"></textarea>
-            </div>
-            <div class="flex-container" style="align-items: flex-start;">
-                <div class="flex-container-column">
-                    <p>Computer?</p><br />
-                    <input type="checkbox" asp-for="Participant.BringsComputer" value="true" />
+                <div class="col-sm-6">
+                    <h1 class="title">WAT NEEM JE MEE?</h1>
+                    <hr />
+                    <div class="form-group">
+                        <label class="label-text" style="display: inline-block;" for="consolecheck">Console:</label>
+                        <input id="consolecheck" class="form-control" style="display: inline-block; vertical-align: middle; width: calc(1.5em + 2px + 0.75rem);" type="checkbox" asp-for="Participant.BringsConsole" />
+                    </div>
+                    <textarea class="form-control" asp-for="Participant.ConsoleDetails" rows="10" cols="80" placeholder="Welke console? Neem je randapparatuur mee?"></textarea>
+                    <div class="form-group">
+                        <label class="label-text" style="display: inline-block;" for="computercheck">Computer:</label>
+                        <input id="computercheck" class="form-control" style="display: inline-block; vertical-align: middle; width: calc(1.5em + 2px + 0.75rem);" type="checkbox" asp-for="Participant.BringsComputer" />
+                    </div>
+                    <textarea class="form-control" asp-for="Participant.ComputerDetails" rows="10" cols="80" placeholder="Welke computer? Neem je randapparatuur mee?"></textarea>
                 </div>
-                <textarea asp-for="Participant.ComputerDetails" rows="10" cols="80" placeholder="Desktop of laptop? Neem je randapparatuur mee?"></textarea>
+                <input type="hidden" asp-for="Participant.HasPaid" value="0" />
+                <div style="text-align: center; margin: 0 auto;">
+                    <label class="label-text" for="tos">Ik ga akkoord met de <a style="color: lightblue;" asp-controller="Home" asp-action="Privacy">voorwaarden</a>.</label>
+                    <input id="tos" class="form-control" style="width: calc(1.5em + 2px + 0.75rem); vertical-align: middle; margin: 0 auto; margin-top: -10px;" type="checkbox" required="required" />
+                    <input class="orange-button" style="margin-top: 20px;" type="submit" value="Aanmelden" />
+                </div>
             </div>
-            <input type="hidden" asp-for="Participant.HasPaid" value="0" />
-            <input class="submit-registration" type="submit" value="Inschrijven" />
         </form>
     </div>
 </div>
