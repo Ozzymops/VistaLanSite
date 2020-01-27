@@ -51,6 +51,33 @@ input[type=button].orange-button {
     border-radius: 15px;
 }
 
+input[type=submit].orange-button {
+    display: block;
+    width: 100px;
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    margin: 0 auto;
+    background-color: #e56a54;
+    border-radius: 15px;
+}
+
+input[type=text].white-field {
+    display: block;
+    width: 150px;
+    font-size: 16px;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+input[type=password].white-field {
+    display: block;
+    width: 150px;
+    font-size: 16px;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
 .responsive-flex-column {
     display: flex;
     float: left;

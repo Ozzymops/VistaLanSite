@@ -1,34 +1,26 @@
 ﻿@{
-    ViewData["Title"] = "VistaLAN - login";
+    ViewData["Title"] = "VISTA LAN - Log in";
 }
 
 @model LoginModel
 
-@* Header *@
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <p class="navbar-brand">Login</p>
-            <a class="navbar-text" asp-area="" asp-controller="Home" asp-action="Index">Terug</a>
-        </div>
-    </nav>
-</header>
-
 @* Content *@
-<div class="text-center">
-    <div class="flex-form">
-        <p>@ViewData["Message"]</p>
-        <form asp-controller="Home" asp-action="CheckLogin">
-            <h2>Administratie login</h2>
-            <div class="flex-container">
-                <p>Gebruikersnaam:</p>
-                <input type="text" asp-for="Username" style="width: 150px;" />
-            </div>
-            <div class="flex-container">
-                <p>Wachtwoord:</p>
-                <input type="text" asp-for="Password" style="width: 150px;" />
-            </div>
-            <input type="submit" value="Inloggen" />
-        </form>
+<div class="jumbotron-fluid" style="height: 800px; max-height: 800px;">
+    <div class="container">
+        <h1 class="title">ADMINISTRATIE LOGIN</h1>
+        <h2 class="subtitle">Dit is alleen bestemd voor de beheerders van de LAN-party.</h2>
+        <hr />
+        <div class="container" style="text-align: center;">
+            <form asp-action="CheckLogin" asp-controller="Home">
+                <div>
+                    <h2 class="subtitle" style="text-align: center;">Gebruikersnaam:</h2>
+                    <input class="white-field" type="text" asp-for="Username" />
+                    <h2 class="subtitle" style="text-align: center;">Wachtwoord:</h2>
+                    <input class="white-field" type="password" asp-for="Password" />
+                    <h3 class="text" style="color: red; text-align: center;">@ViewData["Message"]</h3>
+                    <input class="orange-button" style="margin-top: 20px;" type="submit" value="Inloggen" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>

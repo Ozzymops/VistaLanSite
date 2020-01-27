@@ -15,6 +15,7 @@ namespace VistaLanSite.Controllers
     {
         private int AvailableSpots = 100;
 
+        #region Info pages
         public IActionResult Index()
         {
             Queries Database = new Queries();
@@ -25,11 +26,6 @@ namespace VistaLanSite.Controllers
         }
 
         public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Registration()
         {
             return View();
         }
@@ -49,6 +45,13 @@ namespace VistaLanSite.Controllers
         }
 
         public IActionResult Sponsors()
+        {
+            return View();
+        }
+        #endregion
+
+        #region Registration actions
+        public IActionResult Registration()
         {
             return View();
         }
@@ -83,7 +86,9 @@ namespace VistaLanSite.Controllers
 
             return View();
         }
+        #endregion
 
+        #region Administration actions
         public IActionResult Login(string ViewMessage)
         {
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
@@ -175,6 +180,7 @@ namespace VistaLanSite.Controllers
 
             return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Je bent niet gemachtigd om deze actie uit te voeren." } });
         }
+        #endregion
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
