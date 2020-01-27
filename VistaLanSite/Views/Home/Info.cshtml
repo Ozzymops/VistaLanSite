@@ -4,6 +4,11 @@
 
 @model IndexModel
 
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+</head>
+
 @* Content *@
 <div class="jumbotron-fluid" style="height: 800px; max-height: 800px; background-size: cover; background-image:url('img/back-1.png');">
     <div class="container">
@@ -28,6 +33,7 @@
                 <h2 class="subtitle" style="font-weight: bold;">Een toegangskaartje kost €10,-. Dit is inclusief eten en drinken.</h2>
                 <h2 class="subtitle">De parkeergarage zal dicht zijn, maar je kunt je laten afzetten bij de hoofdingang en vanaf daar kun je naar de B-toren gaan.</h2>
                 <h2 class="subtitle">De LAN-party zal voortduren tot de dag daarna tot 08:00.</h2>
+                <div id="openStreetMap" style="width: 100%; height: 300px;"></div>
             </div>
         </div>
         @if (Model.AvailableSpots <= 0)
@@ -42,3 +48,5 @@
         <a asp-action="Sponsors" asp-controller="Home"><input class="orange-button" style="margin-top: 10px;" type="button" value="> Onze sponsors" /></a>
     </div>
 </div>
+
+<script src="~/js/OpenStreetMap.js"></script>

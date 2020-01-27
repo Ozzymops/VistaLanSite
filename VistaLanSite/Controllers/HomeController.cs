@@ -48,6 +48,11 @@ namespace VistaLanSite.Controllers
             return View(Model);
         }
 
+        public IActionResult Sponsors()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SubmitRegistration(RegistrationModel Model)
         {
