@@ -44,15 +44,15 @@
                     </div>
                     <textarea class="form-control" asp-for="Participant.ConsoleDetails" rows="10" cols="80" placeholder="Welke console? Neem je randapparatuur mee?"></textarea>
                     <div class="form-group">
-                        <label class="label-text" style="display: inline-block;" for="computercheck">Computer:</label>
+                        <label class="label-text" style="display: inline-block; margin-top: 15px;" for="computercheck">Computer:</label>
                         <input id="computercheck" class="form-control" style="display: inline-block; vertical-align: middle; width: calc(1.5em + 2px + 0.75rem);" type="checkbox" asp-for="Participant.BringsComputer" />
                     </div>
                     <textarea class="form-control" asp-for="Participant.ComputerDetails" rows="10" cols="80" placeholder="Welke computer? Neem je randapparatuur mee?"></textarea>
                 </div>
                 <input type="hidden" asp-for="Participant.HasPaid" value="0" />
                 <div style="text-align: center; margin: 0 auto;">
-                    <label class="label-text" for="tos">Ik ga akkoord met de <a style="color: lightblue;" asp-controller="Home" asp-action="Privacy">voorwaarden</a>.</label>
-                    <input id="tos" class="form-control" style="width: calc(1.5em + 2px + 0.75rem); vertical-align: middle; margin: 0 auto; margin-top: -10px;" type="checkbox" required="required" />
+                    @*<label class="label-text" for="tos">Ik ga akkoord met de <a style="color: lightblue;" asp-controller="Home" asp-action="Privacy">voorwaarden</a>.</label>
+                    <input id="tos" class="form-control" style="width: calc(1.5em + 2px + 0.75rem); vertical-align: middle; margin: 0 auto; margin-top: -10px;" type="checkbox" required="required" />*@
                     <input class="orange-button" style="margin-top: 20px;" type="submit" value="Aanmelden" />
                 </div>
             </div>
