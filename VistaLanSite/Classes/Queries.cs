@@ -142,14 +142,14 @@ namespace VistaLanSite.Classes
         }
 
         /// <summary>
-        /// Retrieve the amount of participants already registered.
+        /// Retrieve the amount of participants who are already registered (and have paid).
         /// </summary>
-        /// <returns>Amount of registered participants</returns>
+        /// <returns>Amount of registered and paid participants</returns>
         public int RetrieveParticipantCount()
         {
             using (SqlConnection _connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand _command = new SqlCommand("SELECT COUNT([Id]) FROM [Participants]", _connection);
+                SqlCommand _command = new SqlCommand("SELECT COUNT([Id]) FROM [Participants] WHERE [HasPaid] = 1", _connection);
 
                 try
                 {
