@@ -20,7 +20,17 @@ namespace VistaLanSite.Controllers
         {
             Queries Database = new Queries();
             IndexModel Model = new IndexModel();
-            Model.AvailableSpots = AvailableSpots - Database.RetrieveParticipantCount();
+
+            int TakenSpots = Database.RetrieveParticipantCount();
+
+            if (TakenSpots != -1)
+            {
+                Model.AvailableSpots = AvailableSpots - TakenSpots;
+            }
+            else
+            {
+                Model.AvailableSpots = 100;
+            }
 
             return View(Model);
         }
@@ -39,7 +49,17 @@ namespace VistaLanSite.Controllers
         {
             Queries Database = new Queries();
             IndexModel Model = new IndexModel();
-            Model.AvailableSpots = AvailableSpots - Database.RetrieveParticipantCount();
+
+            int TakenSpots = Database.RetrieveParticipantCount();
+
+            if (TakenSpots != -1)
+            {
+                Model.AvailableSpots = AvailableSpots - TakenSpots;
+            }
+            else
+            {
+                Model.AvailableSpots = 100;
+            }
 
             return View(Model);
         }
@@ -67,7 +87,9 @@ namespace VistaLanSite.Controllers
             Queries Database = new Queries();
             string ViewMessage = "";
 
-            if (AvailableSpots - Database.RetrieveParticipantCount() <= 0)
+            int TakenSpots = Database.RetrieveParticipantCount();
+
+            if (TakenSpots >= 100)
             {
                 ViewMessage = "Registratie mislukt: alle plekken zijn al bezet.";
             }
