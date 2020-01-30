@@ -23,7 +23,7 @@
                         <input id="lastname" class="form-control" type="text" asp-for="Participant.LastName" required="required" />
                     </div>
                     <div class="form-group">
-                        <label class="label-text" for="studentnumber">Studentnummer:</label>
+                        <label class="label-text" for="studentnumber">Leerlingnummer:</label>
                         <input id="studentnumber" class="form-control" type="number" asp-for="Participant.StudentNumber" required="required" />
                     </div>
                     <div class="form-group">
@@ -51,8 +51,8 @@
                 </div>
                 <input type="hidden" asp-for="Participant.HasPaid" value="0" />
                 <div style="text-align: center; margin: 0 auto;">
-                    @*<label class="label-text" for="tos">Ik ga akkoord met de <a style="color: lightblue;" asp-controller="Home" asp-action="Privacy">voorwaarden</a>.</label>
-                    <input id="tos" class="form-control" style="width: calc(1.5em + 2px + 0.75rem); vertical-align: middle; margin: 0 auto; margin-top: -10px;" type="checkbox" required="required" />*@
+                    <label class="label-text" for="tos">Ik ga akkoord met de <a style="color: lightblue;" asp-controller="Home" asp-action="Privacy">AVG / Privacyverklaring</a>.</label>
+                    <input id="tos" class="form-control" style="width: calc(1.5em + 2px + 0.75rem); vertical-align: middle; margin: 0 auto; margin-top: -10px;" type="checkbox" required="required" />
                     <input class="orange-button" style="margin-top: 20px;" type="submit" value="Aanmelden" />
                 </div>
             </div>
