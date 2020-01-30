@@ -11,9 +11,8 @@ namespace VistaLanSite.Classes
     public class Queries
     {
         // Construct connection string
-        private string ConnectionString = (ConfigurationManager.AppSettings["ConnectionString"]
-                       + "User Id='" + ConfigurationManager.AppSettings["DbUsername"] + "'; "
-                       + "Password='" + ConfigurationManager.AppSettings["DbPassword"] + "';").ToString();
+        //private string ConnectionString = "Data Source='tcp:185.41.126.25,9145'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS'";
+        private string ConnectionString = "Data Source='192.168.10.100'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS';";
 
         /// <summary>
         /// Register a new participant into the DB.
@@ -24,7 +23,7 @@ namespace VistaLanSite.Classes
         {
             using (SqlConnection _connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand _command = new SqlCommand("INSERT INTO [dbo].[Participants] SELECT @FirstName, @LastName, @StudentNumber, @StudentClass, @PhoneNumber, @BringsConsole, @ConsoleDetails, @BringsComputer, @ComputerDetails, @HasPaid;", _connection);
+                SqlCommand _command = new SqlCommand("INSERT INTO [Participants] SELECT @FirstName, @LastName, @StudentNumber, @StudentClass, @PhoneNumber, @BringsConsole, @ConsoleDetails, @BringsComputer, @ComputerDetails, @HasPaid;", _connection);
 
                 _command.Parameters.Add(new SqlParameter("@FirstName", participant.FirstName));
                 _command.Parameters.Add(new SqlParameter("@LastName", participant.LastName));
@@ -174,7 +173,7 @@ namespace VistaLanSite.Classes
         {
             using (SqlConnection _connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand _command = new SqlCommand("UPDATE [dbo].[Participants] SET [HasPaid] = @HasPaid WHERE [Id] = @Id", _connection);
+                SqlCommand _command = new SqlCommand("UPDATE [Participants] SET [HasPaid] = @HasPaid WHERE [Id] = @Id", _connection);
 
                 _command.Parameters.Add(new SqlParameter("@HasPaid", 1));
                 _command.Parameters.Add(new SqlParameter("@Id", UpdatedParticipantId));
@@ -209,7 +208,7 @@ namespace VistaLanSite.Classes
         {
             using (SqlConnection _connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand _command = new SqlCommand("DELETE FROM [dbo].[Participants] WHERE [Id] = @Id", _connection);
+                SqlCommand _command = new SqlCommand("DELETE FROM [Participants] WHERE [Id] = @Id", _connection);
 
                 _command.Parameters.Add(new SqlParameter("@Id", DeletedParticipantId));
 

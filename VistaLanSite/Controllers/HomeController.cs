@@ -95,8 +95,14 @@ namespace VistaLanSite.Controllers
             }
             else
             {
-                ViewMessage = "Je bent succesvol geregistreerd voor de LAN-party, vergeet niet te betalen nadat we contact met je opnemen. Alvast veel plezier!";
-                Database.RegisterParticipant(Model.Participant);
+                if (Database.RegisterParticipant(Model.Participant))
+                {
+                    ViewMessage = "Je bent succesvol geregistreerd voor de LAN-party, vergeet niet te betalen nadat we contact met je opnemen. Alvast veel plezier!";
+                }
+                else
+                {
+                    ViewMessage = "Registratie mislukt: er is iets fout gegaan.";
+                }
             }
 
             return RedirectToAction("RegistrationComplete", "Home", new RouteValueDictionary { { "ViewMessage", ViewMessage } });
