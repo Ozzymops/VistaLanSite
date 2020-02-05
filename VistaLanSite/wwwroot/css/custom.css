@@ -7,6 +7,35 @@
 
 */
 
+@media (min-width: 768px) {
+    .background {
+        height: 800px;
+        max-height: 800px;
+        background-size: cover;
+        background-image: url('../img/Background.png');
+    }
+
+    .index {
+        float: left;
+        padding-top: 55vh;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+    .background {
+        height: 768px;
+        max-height: 768px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('../img/Background-smol.png');
+    }
+
+    .index {
+        padding-top: 45vh;
+        text-align: center;
+    }
+}
+
 h1.title {
     display: block;
     padding: 8px;
