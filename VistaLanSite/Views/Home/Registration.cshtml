@@ -42,12 +42,12 @@
                         <label class="label-text" style="display: inline-block;" for="consolecheck">Console:</label>
                         <input id="consolecheck" class="form-control" style="display: inline-block; vertical-align: middle; width: calc(1.5em + 2px + 0.75rem);" type="checkbox" asp-for="Participant.BringsConsole" />
                     </div>
-                    <textarea class="form-control" asp-for="Participant.ConsoleDetails" rows="10" cols="80" placeholder="Welke console? Neem je randapparatuur mee?"></textarea>
+                    <textarea class="form-control" asp-for="Participant.ConsoleDetails" rows="10" cols="80" placeholder="Welke console neem je mee? Neem je ook randapparatuur mee?"></textarea>
                     <div class="form-group">
                         <label class="label-text" style="display: inline-block; margin-top: 15px;" for="computercheck">Computer:</label>
                         <input id="computercheck" class="form-control" style="display: inline-block; vertical-align: middle; width: calc(1.5em + 2px + 0.75rem);" type="checkbox" asp-for="Participant.BringsComputer" />
                     </div>
-                    <textarea class="form-control" asp-for="Participant.ComputerDetails" rows="10" cols="80" placeholder="Welke computer? Neem je randapparatuur mee?"></textarea>
+                    <textarea class="form-control" asp-for="Participant.ComputerDetails" rows="10" cols="80" placeholder="Neem je een computer of laptop mee? Neem je ook randapparatuur mee?"></textarea>
                 </div>
                 <input type="hidden" asp-for="Participant.HasPaid" value="0" />
                 <div style="text-align: center; margin: 0 auto;">
