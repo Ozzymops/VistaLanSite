@@ -11,8 +11,8 @@ namespace VistaLanSite.Classes
     public class Queries
     {
         // Construct connection string
-        private string ConnectionString = "Data Source='tcp:185.41.126.25,9145'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS'";
-        //private string ConnectionString = "Data Source='192.168.10.100'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS';";
+        //private string ConnectionString = "Data Source='tcp:185.41.126.25,9145'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS'";
+        private string ConnectionString = "Data Source='192.168.10.100'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS';";
 
         /// <summary>
         /// Register a new participant into the DB.
