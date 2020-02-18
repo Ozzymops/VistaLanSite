@@ -10,9 +10,17 @@
         <h1 class="title">OVERZICHT</h1>
         <div>
             <form>
-                <input style="float: left; margin-top: 8px;" type="checkbox" name="OnlyUnpaidParticipants" value="true" checked="@Model.OnlyUnpaidParticipants" />
-                <input style="float: right; margin-right: 550px; width: 200px;" type="submit" value="Pagina opnieuw laden" />
-                <h3 class="text" style="margin-left: 25px;">Alleen onbetaalde deelnemers tonen?</h3>
+                <div class="container">
+                    <p>
+                        <h3 class="text">Filteren</h3>
+                        <select asp-for="@Model.ParticipantType">
+                            <option value="0">Alle</option>
+                            <option value="1">Alleen onbetaald</option>
+                            <option value="2">Alleen betaald</option>
+                        </select>
+                        <input style="width: 200px;" type="submit" value="Pagina opnieuw laden" />
+                    </p>                 
+                </div>
                 <input type="hidden" name="ModelExists" value="1" />
             </form>
         </div>
@@ -72,8 +80,8 @@
                             {
                                 <td class="table-danger" style="color: black; text-align: center;">Nee</td>
                             }
-                            <td>@Html.ActionLink("Betaal", "UpdateParticipantStatus", "Home", new { UpdatedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat " + participant.FirstName + " " + participant.LastName + " betaald heeft?')" })</td>
-                            <td>@Html.ActionLink("Verwijder", "DeleteParticipant", "Home", new { DeletedParticipantId = participant.Id, OnlyUnpaidParticipants = Model.OnlyUnpaidParticipants }, new { onclick = "return confirm('Weet je zeker dat je " + participant.FirstName + " " + participant.LastName + " wil verwijderen?')" })</td>
+                            <td>@Html.ActionLink("Betaal", "UpdateParticipantStatus", "Home", new { UpdatedParticipantId = participant.Id, ParticipantType = Model.ParticipantType }, new { onclick = "return confirm('Weet je zeker dat " + participant.FirstName + " " + participant.LastName + " betaald heeft?')" })</td>
+                            <td>@Html.ActionLink("Verwijder", "DeleteParticipant", "Home", new { DeletedParticipantId = participant.Id, ParticipantType = Model.ParticipantType }, new { onclick = "return confirm('Weet je zeker dat je " + participant.FirstName + " " + participant.LastName + " wil verwijderen?')" })</td>
                         </tr>
                     }
                 </tbody>

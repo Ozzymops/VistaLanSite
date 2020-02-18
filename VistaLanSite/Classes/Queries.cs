@@ -11,8 +11,8 @@ namespace VistaLanSite.Classes
     public class Queries
     {
         // Construct connection string
-        //private string ConnectionString = "Data Source='tcp:185.41.126.25,9145'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS'";
-        private string ConnectionString = "Data Source='192.168.10.100'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS';";
+        private string ConnectionString = "Data Source='tcp:185.41.126.25,9145'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS'";
+        //private string ConnectionString = "Data Source='192.168.10.100'; Database='DerixVISTALAN'; User Id='DerixMASTER'; Password='Qr!K08vS';";
 
         /// <summary>
         /// Register a new participant into the DB.
@@ -76,21 +76,27 @@ namespace VistaLanSite.Classes
         /// <summary>
         /// Retrieve all participants for overview.
         /// </summary>
-        /// <param name="OnlyUnpaidParticipants">Only retrieve participants that haven't paid yet?</param>
+        /// <param name="participantType">0 - all, 1 - unpaid, 2 - paid.</param>
         /// <returns>List of participants</returns>
-        public List<Participant> RetrieveParticipants(bool OnlyUnpaidParticipants)
+        public List<Participant> RetrieveParticipants(int participantType)
         {
             using (SqlConnection _connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand _command = new SqlCommand();
 
-                if (OnlyUnpaidParticipants)
+                switch(participantType)
                 {
-                    _command = new SqlCommand("SELECT * FROM [Participants] WHERE [Participants].[HasPaid] = 0", _connection);
-                }
-                else
-                {
-                    _command = new SqlCommand("SELECT * FROM [Participants]", _connection);
+                    case 1:
+                        _command = new SqlCommand("SELECT * FROM [Participants] WHERE [Participants].[HasPaid] = 0 ORDER BY [Id]", _connection);
+                        break;
+
+                    case 2:
+                        _command = new SqlCommand("SELECT * FROM [Participants] WHERE [Participants].[HasPaid] = 1 ORDER BY [Id]", _connection);
+                        break;
+
+                    default:
+                        _command = new SqlCommand("SELECT * FROM [Participants] ORDER BY [Id]", _connection);
+                        break;
                 }
 
                 List<Participant> ParticipantList = new List<Participant>();
@@ -141,14 +147,14 @@ namespace VistaLanSite.Classes
         }
 
         /// <summary>
-        /// Retrieve the amount of participants who are already registered (and have paid).
+        /// Retrieve the amount of participants who are already registered.
         /// </summary>
         /// <returns>Amount of registered and paid participants</returns>
         public int RetrieveParticipantCount()
         {
             using (SqlConnection _connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand _command = new SqlCommand("SELECT COUNT([Id]) FROM [Participants] WHERE [HasPaid] = 1", _connection);
+                SqlCommand _command = new SqlCommand("SELECT COUNT([Id]) FROM [Participants]", _connection);
 
                 try
                 {

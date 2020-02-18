@@ -117,3 +117,11 @@ input[type=password].white-field {
     margin: 0 auto;
     border-radius: 15px;
 }
+
+img.logo {
+    height: 8vh;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #013b40;
+    border-radius: 10px;
+}

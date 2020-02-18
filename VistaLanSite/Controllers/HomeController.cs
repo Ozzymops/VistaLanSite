@@ -128,7 +128,7 @@ namespace VistaLanSite.Controllers
             {
                 if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
                 {
-                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", false } });
+                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "ParticipantType", 0 } });
                 }
             }
 
@@ -145,13 +145,13 @@ namespace VistaLanSite.Controllers
             if (Model.Username == "Administratie" && Model.Password == "8MmNS") // remember this!
             {
                 HttpContext.Session.SetString("User", Model.Username + ":" + Model.Password);
-                return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", false } });
+                return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "ParticipantType", 0 } });
             }
 
             return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Fout gebruikersnaam/wachtwoord. Probeer opnieuw." } });
         }
 
-        public IActionResult Overview(OverviewModel Model, int ModelExists, bool OnlyUnpaidParticipants)
+        public IActionResult Overview(OverviewModel Model, int ModelExists, int ParticipantType)
         {
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
             {
@@ -164,10 +164,10 @@ namespace VistaLanSite.Controllers
                     if (ModelExists == 0)
                     {
                         Model = new OverviewModel();
-                        Model.OnlyUnpaidParticipants = OnlyUnpaidParticipants;
+                        Model.ParticipantType = ParticipantType;
                     }
 
-                    Model.ParticipantList = Database.RetrieveParticipants(Model.OnlyUnpaidParticipants);
+                    Model.ParticipantList = Database.RetrieveParticipants(Model.ParticipantType);
 
                     return View(Model);
                 }
@@ -176,7 +176,7 @@ namespace VistaLanSite.Controllers
             return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Je bent niet gemachtigd om deze pagina te bezoeken." } });
         }
 
-        public IActionResult UpdateParticipantStatus(int UpdatedParticipantId, bool OnlyUnpaidParticipants)
+        public IActionResult UpdateParticipantStatus(int UpdatedParticipantId, int ParticipantType)
         {
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
             {
@@ -188,14 +188,14 @@ namespace VistaLanSite.Controllers
 
                     Database.UpdateParticipantStatus(UpdatedParticipantId);
 
-                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", OnlyUnpaidParticipants } });
+                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "ParticipantType", ParticipantType } });
                 }
             }
 
             return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Je bent niet gemachtigd om deze actie uit te voeren." } });
         }
 
-        public IActionResult DeleteParticipant(int DeletedParticipantId, bool OnlyUnpaidParticipants)
+        public IActionResult DeleteParticipant(int DeletedParticipantId, int ParticipantType)
         {
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
             {
@@ -207,7 +207,7 @@ namespace VistaLanSite.Controllers
 
                     Database.DeleteParticipant(DeletedParticipantId);
 
-                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "OnlyUnpaidParticipants", OnlyUnpaidParticipants } });
+                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "ParticipantType", ParticipantType } });
                 }
             }
 
