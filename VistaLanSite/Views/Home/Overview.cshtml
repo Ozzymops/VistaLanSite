@@ -19,7 +19,8 @@
                             <option value="2">Alleen betaald</option>
                         </select>
                         <input style="width: 200px;" type="submit" value="Pagina opnieuw laden" />
-                    </p>                 
+                        <span style="background-color: red; border-radius: 25px;">@Html.ActionLink("Verwijder alle deelnemers", "DeleteAllParticipants", "Home", new { ParticipantType = Model.ParticipantType }, new { onclick = "return confirm('Weet je zeker dat je iedereen wil verwijderen uit de database?')" })</span>
+                    </p>
                 </div>
                 <input type="hidden" name="ModelExists" value="1" />
             </form>

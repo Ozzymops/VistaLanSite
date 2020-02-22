@@ -8,12 +8,16 @@ using Microsoft.AspNetCore.Routing;
 using VistaLanSite.Models;
 using VistaLanSite.Classes;
 using Microsoft.AspNetCore.Http;
+using System.Configuration;
+using System.Globalization;
 
 namespace VistaLanSite.Controllers
 {
     public class HomeController : Controller
     {
         private int AvailableSpots = 100;
+        //private DateTime ClosingDate = new DateTime(2020, 2, 21, 18, 30, 00);   // closes at 21-2-2020 18:30:00
+        private DateTime ClosingDate = Convert.ToDateTime(ConfigurationManager.AppSettings["ClosingDate"], new CultureInfo("nl-NL"));
 
         #region Info pages
         public IActionResult Index()
@@ -30,6 +34,15 @@ namespace VistaLanSite.Controllers
             else
             {
                 Model.AvailableSpots = 100;
+            }
+
+            if (ClosingDate < DateTime.Now)
+            {
+                Model.PastClosingDate = true;
+            }
+            else
+            {
+                Model.PastClosingDate = false;
             }
 
             return View(Model);
@@ -59,6 +72,15 @@ namespace VistaLanSite.Controllers
             else
             {
                 Model.AvailableSpots = 100;
+            }
+
+            if (ClosingDate < DateTime.Now)
+            {
+                Model.PastClosingDate = true;
+            }
+            else
+            {
+                Model.PastClosingDate = false;
             }
 
             return View(Model);
@@ -206,6 +228,25 @@ namespace VistaLanSite.Controllers
                     Queries Database = new Queries();
 
                     Database.DeleteParticipant(DeletedParticipantId);
+
+                    return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "ParticipantType", ParticipantType } });
+                }
+            }
+
+            return RedirectToAction("Login", "Home", new RouteValueDictionary { { "ViewMessage", "Je bent niet gemachtigd om deze actie uit te voeren." } });
+        }
+
+        public IActionResult DeleteAllParticipants(int ParticipantType)
+        {
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("User")))
+            {
+                if (HttpContext.Session.GetString("User") == "Administratie:8MmNS")
+                {
+                    ViewData["Message"] = null;
+
+                    Queries Database = new Queries();
+
+                    Database.DeleteAllParticipants();
 
                     return RedirectToAction("Overview", "Home", new RouteValueDictionary { { "Model", null }, { "ModelExists", 0 }, { "ParticipantType", ParticipantType } });
                 }

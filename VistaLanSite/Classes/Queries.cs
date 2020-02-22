@@ -238,5 +238,36 @@ namespace VistaLanSite.Classes
                 }
             }
         }
+
+        /// <summary>
+        /// Delete all participants from the database. Total reset.
+        /// </summary>
+        /// <returns>Has the procedure succeeded or not?</returns>
+        public bool DeleteAllParticipants()
+        {
+            using (SqlConnection _connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand _command = new SqlCommand("DELETE FROM [Participants]", _connection);
+
+                try
+                {
+                    _connection.Open();
+
+                    int _rows = _command.ExecuteNonQuery();
+
+                    if (_rows > 0)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+                catch (Exception _exception)
+                {
+                    Debug.WriteLine("!ERROR! " + DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + " - " + _exception.ToString());
+                    return false;
+                }
+            }
+        }
     }
 }

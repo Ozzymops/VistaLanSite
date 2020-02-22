@@ -42,6 +42,10 @@
         {
             <h3 class="text">Sorry, er zijn geen plaatsen meer vrij.</h3>
         }
+        else if (Model.PastClosingDate)
+        {
+            <h3 class="text" style="text-align: center; font-size: 28px;">Geïnteresseerd? We zijn op het moment niet bezig met het organiseren van een LAN-party. Check de site op een later moment weer.</h3>
+        }
         else
         {
             <h3 class="text" style="text-align: center; font-size: 28px;">Geïnteresseerd? Schrijf je snel in, nog @Model.AvailableSpots plaatsen over!</h3>

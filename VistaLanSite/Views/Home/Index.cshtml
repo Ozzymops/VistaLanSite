@@ -7,11 +7,15 @@
 @* Content *@
 <div class="jumbotron-fluid background">
     <div class="container index" style="max-width: 570px;">
-        <h1 style="color: white; text-shadow: #000 1px 1px 1px; -webkit-font-smoothing: antialiased;">VISTA LAN</h1>
+        <h1 style="color: white; text-shadow: #000 1px 1px 1px; -webkit-font-smoothing: antialiased;">VISTA LAN 2020</h1>
         <h3 style="color: white; text-shadow: #000 1px 1px 1px; -webkit-font-smoothing: antialiased;">LAN-party voor iedereen van VISTA college</h3>
         @if (Model.AvailableSpots <= 0)
         {
             <h3>Sorry, er zijn geen plaatsen meer vrij.</h3>
+        }
+        else if (Model.PastClosingDate)
+        {
+            <h3 style="color: yellow;">Sorry, het evenement is nu gesloten.<br />We hopen dat je veel plezier hebt gehad en dat je de volgende keer ook weer komt!</h3>
         }
         else
         {

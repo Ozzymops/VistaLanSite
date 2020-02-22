@@ -125,3 +125,8 @@ img.logo {
     background-color: #013b40;
     border-radius: 10px;
 }
+
+.danger {
+    background-color: red;
+    text-align: center;
+}

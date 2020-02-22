@@ -8,5 +8,6 @@ namespace VistaLanSite.Models
     public class IndexModel
     {
         public int AvailableSpots = 0;
+        public bool PastClosingDate = false;
     }
 }
